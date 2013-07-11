@@ -10,7 +10,7 @@ object NewProjectPlugin extends Plugin {
     val sbtVersion = readInput("Enter SBT Version: ")
     val scalaVersion = readInput("Enter Scala Version: ")
     createProjectDir(projectName)
-    generateFiles(projectName,scalaVersion,sbtVersion)
+    generateFiles(projectName, scalaVersion, sbtVersion)
     state
   }
 
@@ -21,9 +21,14 @@ object NewProjectPlugin extends Plugin {
       "version := " + quote + "1.0" + quote + "\n\n" + "scalaVersion := " + quote + scalaVersion + quote
 
     val buildProp = "sbt.version=" + sbtVersion
-    
+
+    val plugins = "addSbtPlugin(\"com.typesafe.sbteclipse\" % \"sbteclipse-plugin\" % \"2.2.0\")" + "\n\n" +
+      "addSbtPlugin(\"org.ensime\" % \"ensime-sbt-cmd\" % \"0.1.1\")" + "\n\n" +
+      "addSbtPlugin(\"com.github.mpeltonen\" % \"sbt-idea\" % \"1.4.0\")"
+
     text(buildProp, new File(name + "/" + "project/build.properties"))
     text(buildsbt, new File(name + "/" + "build.sbt"))
+    text(plugins, new File(name + "/" + "project/plugins.sbt"))
     //build.scala
 
   }
@@ -48,9 +53,9 @@ object NewProjectPlugin extends Plugin {
 
     //test
     val testDir = projectName + "/" + "src/" + "test" + "/"
-    IO.createDirectory(new File(testDir+"resources"))
-    IO.createDirectory(new File(testDir+"scala"))
-    IO.createDirectory(new File(testDir+"java"))
+    IO.createDirectory(new File(testDir + "resources"))
+    IO.createDirectory(new File(testDir + "scala"))
+    IO.createDirectory(new File(testDir + "java"))
 
     false
   }
