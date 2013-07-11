@@ -61,7 +61,7 @@ object NewProjectPlugin extends Plugin {
   }
 
   def readInput(message: String): String = {
-    println(message)
+    print(message)
     val response = scala.Console.readLine()
     println
     response

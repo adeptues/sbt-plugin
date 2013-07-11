@@ -18,6 +18,6 @@ write unit tests
 
 find out how to install as a global plugin
 
-generate default plugins.sbt which should contain uwseful ide plugins
-
 generate basic build.scala template.
+
+allow full text input editiing currently unable to delete on commandline
