@@ -5,7 +5,7 @@ import Keys._
 object NewProjectPlugin extends Plugin {
   override lazy val settings = Seq(commands += myCommand)
 
-  lazy val myCommand = Command.command("hello") { (state: State) =>
+  lazy val myCommand = Command.command("new") { (state: State) =>
     val projectName = readInput("Enter Project Name: ")
     val sbtVersion = readInput("Enter SBT Version: ")
     val scalaVersion = readInput("Enter Scala Version: ")
